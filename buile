@@ -1,0 +1,494 @@
+
+//Brock and Andrew's Tic Tac Toe
+import java.awt.EventQueue;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+
+public class coderino {
+
+	int turnNum = 1;
+	boolean b1IsClicked = false;
+	boolean b2IsClicked = false;
+	boolean b3IsClicked = false;
+	boolean b4IsClicked = false;
+	boolean b5IsClicked = false;
+	boolean b6IsClicked = false;
+	boolean b7IsClicked = false;
+	boolean b8IsClicked = false;
+	boolean b9IsClicked = false;
+	byte b1B;
+	byte b2B;
+	byte b3B;
+	byte b4B;
+	byte b5B;
+	byte b6B;
+	byte b7B;
+	byte b8B;
+	byte b9B;
+	boolean gameOver = false;
+
+	private JFrame frmBasics;
+
+	/**
+	 * @wbp.nonvisual location=-359,59
+	 */
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					coderino window = new coderino();
+					window.frmBasics.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public coderino() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmBasics = new JFrame();
+		frmBasics.setTitle("Tic Tac Toe");
+		frmBasics.setBounds(100, 100, 400, 400);
+		frmBasics.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBasics.getContentPane().setLayout(new GridLayout(4, 3, 0, 0));
+		JButton winShow = new JButton("");
+		winShow.setBackground(SystemColor.textHighlight);
+		frmBasics.getContentPane().add(winShow);
+
+		JButton turnShow = new JButton("It is X's Turn");
+		frmBasics.getContentPane().add(turnShow);
+
+		JButton b1 = new JButton("");
+		b1.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (turnNum % 2 == 0 && b1IsClicked == false && gameOver == false) {
+					b1.setLabel("O");
+					turnNum += 1;
+					b1B = 1;
+					b1IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b1IsClicked == false && gameOver == false) {
+					b1.setLabel("X");
+					turnNum += 1;
+					b1B = 2;
+					b1IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+		JButton resetButton = new JButton("Reset Game");
+		resetButton.setBackground(new Color(255, 0, 0));
+
+		frmBasics.getContentPane().add(resetButton);
+
+		frmBasics.getContentPane().add(b1);
+
+		JButton b2 = new JButton("");
+		b2.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b2IsClicked == false && gameOver == false) {
+					b2.setLabel("O");
+					turnNum += 1;
+					b2B = 1;
+					b2IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b2IsClicked == false && gameOver == false) {
+					b2.setLabel("X");
+					turnNum += 1;
+					b2B = 2;
+					b2IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+		frmBasics.getContentPane().add(b2);
+
+		JButton b3 = new JButton("");
+		b3.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b3IsClicked == false && gameOver == false) {
+					b3.setLabel("O");
+					turnNum += 1;
+					b3B = 1;
+					b3IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b3IsClicked == false && gameOver == false) {
+					b3.setLabel("X");
+					turnNum += 1;
+					b3B = 2;
+					b3IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b3);
+
+		JButton b4 = new JButton("");
+		b4.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b4IsClicked == false && gameOver == false) {
+					b4.setLabel("O");
+					turnNum += 1;
+					b4B = 1;
+					b4IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b4IsClicked == false && gameOver == false) {
+					b4.setLabel("X");
+					turnNum += 1;
+					b4B = 2;
+					b4IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b4);
+
+		JButton b5 = new JButton("");
+		b5.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b5IsClicked == false && gameOver == false) {
+					b5.setLabel("O");
+					turnNum += 1;
+					b5B = 1;
+					b5IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b5IsClicked == false && gameOver == false) {
+					b5.setLabel("X");
+					turnNum += 1;
+					b5B = 2;
+					b5IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b5);
+
+		JButton b6 = new JButton("");
+		b6.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b6IsClicked == false && gameOver == false) {
+					b6.setLabel("O");
+					turnNum += 1;
+					b6B = 1;
+					b6IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b6IsClicked == false && gameOver == false) {
+					b6.setLabel("X");
+					turnNum += 1;
+					b6B = 2;
+					b6IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b6);
+
+		JButton b7 = new JButton("");
+		b7.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b7IsClicked == false && gameOver == false) {
+					b7.setLabel("O");
+					turnNum += 1;
+					b7B = 1;
+					b7IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b7IsClicked == false && gameOver == false) {
+					b7.setLabel("X");
+					turnNum += 1;
+					b7B = 2;
+					b7IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b7);
+
+		JButton b8 = new JButton("");
+		b8.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b8IsClicked == false && gameOver == false) {
+					b8.setLabel("O");
+					turnNum += 1;
+					b8B = 1;
+					b8IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b8IsClicked == false && gameOver == false) {
+					b8.setLabel("X");
+					turnNum += 1;
+					b8B = 2;
+					b8IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b8);
+
+		JButton b9 = new JButton("");
+		b9.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 99));
+		b9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (turnNum % 2 == 0 && b9IsClicked == false && gameOver == false) {
+					b9.setLabel("O");
+					turnNum += 1;
+					b9B = 1;
+					b9IsClicked = true;
+					turnShow.setLabel("It is X's turn");
+				} else if (b9IsClicked == false && gameOver == false) {
+					b9.setLabel("X");
+					turnNum += 1;
+					b9B = 2;
+					b9IsClicked = true;
+					turnShow.setLabel("It is O's turn");
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 2) || (b1B == b4B) && (b4B == b7B) && (b7B == 2)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 2) || (b7B == b8B) && (b8B == b9B) && (b9B == 2)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 2) || (b3B == b6B) && (b6B == b9B) && (b9B == 2)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 2) || (b3B == b5B) && (b5B == b7B) && (b7B == 2))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is X");
+					gameOver = true;
+				}
+				if (((b1B == b2B) && (b2B == b3B) && (b3B == 1) || (b1B == b4B) && (b4B == b7B) && (b7B == 1)
+						|| (b4B == b5B) && (b5B == b6B) && (b6B == 1) || (b7B == b8B) && (b8B == b9B) && (b9B == 1)
+						|| (b2B == b5B) && (b5B == b8B) && (b8B == 1) || (b3B == b6B) && (b6B == b9B) && (b9B == 1)
+						|| (b1B == b5B) && (b5B == b9B) && (b9B == 1) || (b3B == b5B) && (b5B == b7B) && (b7B == 1))
+						&& (gameOver == false)) {
+					winShow.setLabel("The Winner is O");
+					gameOver = true;
+				}
+				if (turnNum >= 10) {
+					winShow.setLabel("It's a Tie");
+					gameOver = true;
+				}
+			}
+		});
+
+		frmBasics.getContentPane().add(b9);
+
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				turnNum = 1;
+				b1IsClicked = false;
+				b2IsClicked = false;
+				b3IsClicked = false;
+				b4IsClicked = false;
+				b5IsClicked = false;
+				b6IsClicked = false;
+				b7IsClicked = false;
+				b8IsClicked = false;
+				b9IsClicked = false;
+				b1B = 0;
+				b2B = 0;
+				b3B = 0;
+				b4B = 0;
+				b5B = 0;
+				b6B = 0;
+				b7B = 0;
+				b8B = 0;
+				b9B = 0;
+				gameOver = false;
+				b1.setLabel("");
+				b2.setLabel("");
+				b3.setLabel("");
+				b4.setLabel("");
+				b5.setLabel("");
+				b6.setLabel("");
+				b7.setLabel("");
+				b8.setLabel("");
+				b9.setLabel("");
+				turnShow.setLabel("It is X's turn");
+				winShow.setLabel("");
+			}
+		});
+	}
+
+}
